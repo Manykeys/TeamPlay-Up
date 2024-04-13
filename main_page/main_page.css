@@ -1,0 +1,137 @@
+@font-face {
+    font-family: 'MonsteratThin';
+    src: url('Montserrat-Light.ttf');
+}
+
+@font-face {
+    font-family: 'Monsterat';
+    src: url('Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'MonsteratBold';
+    src: url('Montserrat-Bold.ttf');
+}
+
+body{
+    background-color: #1D1C1C;
+}
+
+.logo{
+    margin: 0.5vh 0px 0px 1vw;
+    width: 6%;
+}
+
+.aurthor{
+    position: relative;
+    float: right;
+    font-family: Inter, sans-serif;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: 900;
+    font-size: 1.7vw;
+    margin-top: 1.5vh;
+    margin-right: 4vw;
+}
+h1{
+    background-image: linear-gradient(#FFFFFF 20%, #4F4F4F);
+    color: transparent;
+    background-clip: text;
+    font-size: 8.5vw;
+    font-family: sans-serif;
+    text-align: center;
+    font-weight: 700;
+    transform: scale(1.0, 0.9);
+    margin-top: 22vh;
+    margin-bottom: 0.1vh;
+}
+.gatherTeam{
+    margin-top: 0.1vh;
+    font-family: 'MonsteratThin';
+}
+div{
+    display: grid;
+}
+h2{
+    font-size: 3vw;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: 100;
+}
+.find{
+    color: #1D1C1C;
+    width: 33%;
+    height: 10vh;
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    background-color: #148533;
+    align-content: center;
+    flex-wrap: wrap;
+    font-size: 3vw;
+    font-family: 'Monsterat';
+    margin-top: 6vh;
+    border-radius: 250px;
+    text-decoration: none;
+    font-weight: 900;
+    box-shadow: inset 0px 0px 1vw rgba(0,0,0,0.8);;
+}
+
+.joinUs{
+    width: 85vw;
+    justify-self: center;
+    font-weight:900;
+    margin-top: 35vh;
+    font-size: 2.7vw;
+    font-family: 'MonsteratBold';
+}
+
+.level{
+    color: green;
+}
+
+.block{
+    width: 25vw;
+    height: 55vh;
+    background-color: #484646;
+    border-radius: 3vw;
+    box-shadow: inset 0px 0px 1.5vw rgba(0,0,0,1);
+    box-sizing: border-box;
+}
+
+.blocks{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3vw;
+    box-sizing: border-box;
+    margin-bottom: 15vh;
+    margin-top: 5vh;
+}
+
+.blockTitle{
+    font-family: 'MonsteratBold';
+    font-weight: 900;
+    font-size: 2vw;
+    letter-spacing: -0.1vw;
+    height: 10vh;
+    width: 80%;
+    margin-right: 10%;
+    margin-left: 10%;
+    text-align: left;
+    margin-top: 12%;
+    text-shadow: 0 0.2vw 0.7vw #000;
+    margin-bottom: 2%;
+}
+p{
+    font-family: 'MonsteratThin';
+    color: #FFFFFF;
+    font-size: 1.5vw;
+    width: 80%;
+    margin-right: 10%;
+    margin-left: 10%;
+    text-align: left;
+    margin-top: 2%;
+    height: 20vh;
+    margin-bottom: 10vh;
+}
