@@ -1,0 +1,72 @@
+body{
+    background-color: #1D1C1C;
+}
+
+
+.text-center{
+    font-family: 'MonsteratBold';
+    color: #FFFFFF;
+    margin-bottom: 10vh;
+    font-size: 2.2vw;
+}
+
+h2{
+    font-family: 'Monsterat';
+    color: #FFFFFF;
+    font-size: 1.2vw;
+}
+
+.form-control{
+    width: 20vw;
+    height: 5vh;
+    border-color: #FFFFFF;
+    background-color: hsla(0, 0%, 55%, 10%);
+    border-radius: 5vw;
+    margin-top: -0.6vh;
+    border: 0.1vw solid #FFFFFF;
+    border-top: 0.1vw solid #FFFFFF;
+    padding-left: 1vw;
+    color: #FFFFFF;
+    font-size: 1.2vw;
+}
+
+.container{
+    margin-top: 15vh;
+    margin-left: 10vw;   
+}
+
+.new, .reg{
+    display: inline-block;
+    margin-top: 8vh;
+}
+
+.reg{
+    margin-left: 2vw;
+    text-decoration: none;
+    font-family: 'MonsteratBold';
+    color: #148533;
+    font-size: 1.3vw;
+    font-weight: 900;
+}
+
+
+.mb-3{
+    margin-top: 5vh;
+}
+
+.enter{
+    color: #1D1C1C;
+    width: 16vw;
+    height: 7vh;
+    justify-self: center;
+    justify-content: center;
+    background-color: #148533;
+    align-content: center;
+    margin-top: 8vh;
+    font-size: 1.2vw;
+    font-family: 'Monsterat';
+    border-radius: 5vw;
+    font-weight: 900;
+    box-shadow: inset 0px 0px 0.5vw 0.25vw rgba(0,0,0,0.8);
+    border: none;
+}

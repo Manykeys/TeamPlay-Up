@@ -12,11 +12,11 @@ def login():
         users = database.get_dictionary_of_users()
         if username in users and users[username][0] == password:
             print(1)
-            return render_template('login.html', error=True)
+            return render_template('../../login/login.html', error=True)
         else:
-            return render_template('login.html', error=True)
+            return render_template('/login/login.html', error=True)
     else:
-        return render_template('login.html', error=False)
+        return render_template('teamplates/login/login.html', error=False)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -25,7 +25,7 @@ def register():
         username = request.form['username']
         password = request.form['password']
         database.add_user(username, password)
-    return render_template('login.html', error=True)
+    return render_template('/login/login.html', error=True)
 
 
 if __name__ == '__main__':
