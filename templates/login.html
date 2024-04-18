@@ -1,36 +1,43 @@
 <!DOCTYPE html>
-<head lang="ru">
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='login/login.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='other_shit/fonts_other_shit.css')}}">
 </head>
 <body>
-  <div class="container">
-      <div class="row justify-content-center mt-5">
+<div class="container">
+    <div class="row justify-content-center mt-5">
         <div class="col-md-6">
-          <div class="card">
-            <div class="card-header">
-              <h1 class="text-center">Авторизация</h1>
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="text-center">Авторизация</h1>
+                </div>
+                {% if error %}
+                <p class="error">{{ error_message }}</p>
+                {% endif %}
+                <form method="post">
+                    <div class="mb-3">
+                        <h2 class="form-lable">Имя пользователя</h2>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <h2 class="form-label">Пароль</h2>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="new-reg">
+                        <h2 class="new">Новый пользователь TeamPlayUp?</h2>
+                        <a class="reg" href="{{ url_for('register') }}">Зарегистрироваться</a>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="enter">Войти</button>
+                    </div>
+                </form>
             </div>
-              <form method="post">
-                <div class="mb-3">
-                  <h2 class="form-lable">Имя пользователя</h2>
-                  <input type="text" class="form-control" id="username" name="username" required>
-                </div>
-                <div class="mb-3">
-                  <h2 class="form-label">Пароль</h2>
-                  <input type="password" class="form-control" id="password" name="password" required>
-                </div>
-                <div class="new-reg">
-                  <h2 class="new">Новый пользователь TeamPlayUp?</h2>
-                  <a class="reg" href="{{ url_for('register') }}">Зарегестрироваться</a>
-                </div>
-                <div class="text-center">
-                  <button type="submit" class="enter">Войти</button>
-                </div>
-              </form>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
+</div>
 </body>
+</html>

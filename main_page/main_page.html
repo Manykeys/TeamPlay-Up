@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <head lang="ru">
-    <link rel="stylesheet" href="main_page.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
     <link rel="preconnect" href="https://rsms.me/">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link rel="stylesheet" href="../other_shit/fonts_other_shit.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='other_shit/fonts_other_shit.css')}}">
 </head>
 <body>
-    <img class="logo" src="Logo.png">
+    <img class="logo" src="static/images/Logo.png">
     <a class="aurthor" href="/autorization.html">Авторизироваться</a>
     <h1>TEAM PLAY UP</h1>
     <h2 class="gatherTeam">Собери свою команду</h2>
