@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head lang="ru">
-    <link rel="stylesheet" href="registration.css">
-    <link rel="stylesheet" href="../other_shit/fonts_other_shit.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='reg/registration.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='other_shit/fonts_other_shit.css')}}">
 </head>
 <body>
   <div class="container">
@@ -22,7 +22,7 @@
                 </div>
                 <div class="new-reg">
                   <h2 class="new">Уже есть аккаунт в TeamPlayUp?</h2>
-                  <a class="reg" href="../templates/login.html">Войти</a>
+                  <a class="reg" href="{{url_for('login')}}">Войти</a>
                 </div>
                 <div class="text-center">
                   <button type="submit" class="enter">Зарегестрироваться</button>

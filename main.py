@@ -25,7 +25,7 @@ def register():
         username = request.form['username']
         password = request.form['password']
         database.add_user(username, password)
-    return render_template('login.html', error=True)
+    return render_template('registration.html', error=True)
 
 
 if __name__ == '__main__':
