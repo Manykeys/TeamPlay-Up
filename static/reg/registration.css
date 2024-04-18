@@ -70,3 +70,7 @@ h2{
     box-shadow: inset 0px 0px 0.5vw 0.25vw rgba(0,0,0,0.8);
     border: none;
 }
+
+.error {
+    color: red;
+}

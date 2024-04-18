@@ -11,10 +11,10 @@ def login():
         password = request.form['password']
         users = database.get_dictionary_of_users()
         if username in users and users[username][0] == password:
-            print(1)
-            return render_template('login.html', error=True)
+            return render_template('main_page.html')
         else:
-            return render_template('login.html', error=True)
+            error_message = 'Incorrect username or password. Please try again.'
+            return render_template('login.html', error=True, error_message=error_message)
     else:
         return render_template('login.html', error=False)
 
@@ -24,8 +24,14 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        database.add_user(username, password)
-    return render_template('registration.html', error=True)
+        dict = database.get_dictionary_of_users()
+        if username in dict.keys():
+            error_message = 'Nickname already exists. Please choose a different one.'
+            return render_template('registration.html', error=True, error_message=error_message)
+        else:
+            database.add_user(username, password)
+            return render_template('main_page.html')
+    return render_template('registration.html', error=False)
 
 
 if __name__ == '__main__':

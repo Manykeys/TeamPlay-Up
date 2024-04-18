@@ -59,4 +59,4 @@ def view_users():
     else:
         print("Таблица пользователей пуста.")
 
-# view_users()
+#view_users()

@@ -4,7 +4,7 @@ body{
 
 
 .text-center{
-    font-family: 'MonsteratBold';
+    font-family: 'MonsteratThin';
     color: #FFFFFF;
     margin-bottom: 10vh;
     font-size: 2.2vw;
@@ -67,6 +67,5 @@ h2{
     font-family: 'Monsterat';
     border-radius: 5vw;
     font-weight: 900;
-    box-shadow: inset 0px 0px 0.5vw 0.25vw rgba(0,0,0,0.8);
     border: none;
 }
