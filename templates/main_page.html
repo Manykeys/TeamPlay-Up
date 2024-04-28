@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <head lang="ru">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
-    <link rel="preconnect" href="https://rsms.me/">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main_page/main_page.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='other_shit/fonts_other_shit.css')}}">
 </head>
 <body>
     <img class="logo" src="static/images/Logo.png">
-    <a class="aurthor" href="/autorization.html">Авторизироваться</a>
+    <a class="aurthor" href="{{ url_for('login') }}">Авторизироваться</a>
     <h1>TEAM PLAY UP</h1>
     <h2 class="gatherTeam">Собери свою команду</h2>
     <div>
-        <a href="/autorization.html" class="find">Найти тиммейта</a>
+        <a href="{{ url_for('login') }}" class="find">Найти тиммейта</a>
     </div>
     <div>
         <h2 class="joinUs">Присоединяйтесь к TeamPlayUp и поднимите свой игровой опыт на <span class="level">новый уровень</span>!</h2>
