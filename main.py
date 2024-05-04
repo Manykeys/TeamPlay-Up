@@ -42,6 +42,14 @@ def register():
             return render_template('main_page.html')
     return render_template('registration.html', error=False)
 
+@app.route('/choose', methods=['GET', 'POST'])
+def choose():
+    return render_template('choose_desteny.html')
+
+@app.route('/dota2', methods=['GET', 'POST'])
+def dota2():
+    return render_template('dota2.html')
+
 
 if __name__ == '__main__':
     app.run(host="127.0.0.1", port=5000)

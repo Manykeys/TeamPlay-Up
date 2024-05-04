@@ -1,0 +1,126 @@
+body{
+    background-color: #1D1C1C;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.logo{
+    width: 7vw;
+}
+
+h1{
+    color: white;
+    font-family: 'MonsteratBold';
+    font-size: 2.2vw;
+    margin-bottom: 0.5vh;
+    position: absolute;
+    bottom: 0;
+}
+.on_the_left{
+    width: 42vw;
+    height: 100%;
+}
+
+.on_the_right{
+    width: calc(100% - 42.5vw);
+    color: white;
+    font-family: Inter, sans-serif;
+    height: 100%;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.top-chik{
+    height: 22vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+.on_the_left, .on_the_right{
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+}
+
+.find{
+    position: absolute;
+    right: 0;
+    width: 10vw;
+    margin-right: 1vw;
+    bottom: 0;
+  }
+.find .find-me {
+    width: 100%;
+    height: 2.5vw;
+    background-color: rgba(142, 141, 141, 0.1);
+    border-radius: 5vw;
+    border: 0.15vw solid white;
+    padding-left: 1.5vw;
+    margin-left: -3.3vw;
+    color: white;
+    padding-right: 2.8vw;
+    font-family: 'Monsterat';
+    font-size: 1.5vw;
+    outline: none;
+}
+.find .mag-glass {
+    height: 1.4vw;
+    width: 1.4vw;
+    position: absolute;
+    top: 0.7vw;
+    right: -0.4vw;
+    background-color: transparent;
+}
+
+.nick{
+    position: absolute;
+    top: 6.5vh;
+    right: 5vw;
+    font-size: 1.5vw;
+    font-family: 'InterBold';
+    margin-top: 1vh;
+}
+
+.menu{
+    width: 2.5vw;
+    height: 3vw;
+    position: absolute;
+    right: 0;
+    top: 6.5vh;
+}
+
+.gamesDiv{
+    display: grid;
+    margin-top: 3vh;
+    height: 70vh;
+    grid-template-columns: 15vw 15vw 15vw 15vw;
+    grid-row-gap: 5vh;
+    grid-column-gap: 11.3vw;
+    margin-left: 6vw;
+}
+
+.game{
+    display: flex;
+    flex-direction: column;
+    width: 15vw;
+    height: 25vh;
+    margin-bottom: 5vh;
+}
+
+.gameImage{
+    width: 9vw;
+}
+
+.gameName{
+    font-size: 1.5vw;
+    font-family: 'Monsterat';
+    margin-top: 2vh;
+    margin-bottom: 0;
+    color: white;
+}
+
+.gatherTeam{
+    font-size: 1.2vw;
+    text-decoration: none;
+    color: #148533;
+}

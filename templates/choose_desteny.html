@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dest/choose_desteny.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='other_shit/fonts_other_shit.css')}}">
+    <script src="static/dest/choose.js" defer></script>
+</head>
+<body>
+    <div class="top-chik">
+        <div class="on_the_left">
+            <img class="logo" src="static/images/Logo.png">
+            <h1>Выберите игру</h1>
+        </div>
+        <div class="on_the_right"> 
+            <h2 id="nickname" class="nick">Gen@diy</h2>
+            <input type="image" class="menu" src="static/images/burger 3.png">
+            <form class="find">
+                <input type="text" class="find-me">
+                <input type="image" class="mag-glass" src="static/images/image.png">
+            </form>
+        </div>
+    </div>
+    <div class="gamesDiv" id="games">
+
+    </div>
+</body>

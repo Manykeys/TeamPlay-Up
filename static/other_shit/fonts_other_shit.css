@@ -12,3 +12,18 @@
     font-family: 'MonsteratBold';
     src: url('Montserrat-Bold.ttf');
 }
+
+@font-face {
+    font-family: 'Inter';
+    src: url('Inter-Regular.otf');
+}
+
+@font-face {
+    font-family: 'InterBold';
+    src: url('Inter-Bold.otf');
+}
+
+@font-face {
+    font-family: 'InterLight';
+    src: url('Inter-Light.otf');
+}
