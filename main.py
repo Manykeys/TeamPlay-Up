@@ -51,7 +51,7 @@ def choose():
 @app.route('/dota2', methods=['GET', 'POST'])
 def dota2():
     if is_authorized:
-        return render_template('dota2.html')
+        return render_template('dota.html')
     else:
         return redirect(url_for('login'))  # Redirect to the login page if not authorized
 

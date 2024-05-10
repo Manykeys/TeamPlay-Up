@@ -4,6 +4,7 @@ body {
   padding: 0;
   background-color: #1D1C1C;
   color: #fff;
+  font-family: 'Monsterat';
 }
 
 header {
@@ -90,23 +91,48 @@ header h1 {
 
 .new-application .button-container {
   display: flex;
-  justify-content: center; /* Выравниваем содержимое по центру */
+  justify-content: center; 
 }
 
-.description-overlay {
-  position: absolute;
-  top: 15%;
-  padding: 20px;
-  border-radius: 10px;
-  margin-left: 50%
+.on_the_left{
+  width: 42vw;
+  height: 100%;
 }
 
-.description-text {
-  color: #fff;
-  font-size: 18px;
-}
-
-img {
+.on_the_right{
+  width: calc(100% - 42.5vw);
+  color: white;
+  font-family: Inter, sans-serif;
+  height: 100%;
   position: relative;
-  z-index: 0; /* Установка изображения поверх описания */
+  flex-wrap: wrap;
+}
+
+.top-chik{
+  height: 22vh;
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+.on_the_left, .on_the_right{
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+}
+
+.nick{
+  position: absolute;
+  top: 6.5vh;
+  right: 5vw;
+  font-size: 1.5vw;
+  font-family: 'InterBold';
+  margin-top: 1vh;
+}
+
+.menu{
+  width: 2.5vw;
+  height: 3vw;
+  position: absolute;
+  right: 0;
+  top: 6.5vh;
 }
