@@ -29,24 +29,25 @@
     <img src="static/images/dota2.png" style="width: 40%; margin-left: 50%"> 
   </header>
   <section id="applications">
-    <div class="new-application">
-      <form id="newApplicationForm">
-        <h2>Заполните анкету</h2>
-        <label for="name">Имя:</label>
-        <input type="text" id="name" name="name" required>
-        <label for="rating">Рейтинг:</label>
-        <input type="number" id="rating" name="rating" required>
-        <label for="comment">Комментарий:</label>
-        <input type="text" id="comment" name="comment" required>
-        <div class="button-container">
-          <button type="submit">Отправить</button>
-        </div>
-        
-      </form>
+    <div class="new-application-container">
+      <div class="new-application">
+        <form id="newApplicationForm">
+          <h2>Заполните анкету</h2>
+          <label for="name">Имя:</label>
+          <input type="text" id="name" name="name" required>
+          <label for="rating">Рейтинг:</label>
+          <input type="number" id="rating" name="rating" required>
+          <label for="comment">Комментарий:</label>
+          <input type="text" id="comment" name="comment" required>
+          <div class="button-container">
+            <button type="submit">Отправить</button>
+          </div>
+        </form>
+      </div>
     </div>
-    <div class="application">
+    <div class="application-list-container">
       <div class="application-list">
-
+        <!-- Placeholder для списка заявок -->
       </div>
     </div>
   </section>

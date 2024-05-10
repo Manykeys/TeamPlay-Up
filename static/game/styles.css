@@ -27,11 +27,16 @@ header h1 {
   padding: 20px;
 }
 
-.application, .new-application {
+.new-application-container {
   width: 45%;
 }
 
-.application h2, .new-application h2 {
+.application-list-container {
+  width: 55%;
+  margin-left: auto;
+}
+
+.new-application h2, .application-list h2 {
   margin-top: 0;
 }
 
@@ -39,6 +44,7 @@ header h1 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
+  margin-right: auto; /* Добавлено */
 }
 
 .application-list .application-item {
@@ -52,10 +58,10 @@ header h1 {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
-  background-color: #555; /* добавлен серый цвет фона */
-  border-radius: 10px; /* скругление углов */
+  background-color: #555;
+  border-radius: 10px;
   padding: 20px;
-  width: 40%;
+  width: 50%;
   justify-content: center;
   align-items: center;
 }
