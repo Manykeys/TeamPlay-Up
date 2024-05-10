@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dota 2 - Описание игры</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Описание игры Dota 2</h1>
+    <div class="sort">
+      <label for="sort">Сортировка по рейтингу:</label>
+      <select id="sort">
+        <option value="asc">По возрастанию</option>
+        <option value="desc">По убыванию</option>
+      </select>
+    </div>
+    <img src="dota2.png" style="width: 40%; margin-left: 50%"> 
+  </header>
+  <section id="applications">
+    <div class="new-application">
+      <form id="newApplicationForm">
+        <h2>Заполните анкету</h2>
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="rating">Рейтинг:</label>
+        <input type="number" id="rating" name="rating" required>
+        <label for="comment">Комментарий:</label>
+        <input type="text" id="comment" name="comment" required>
+        <div class="button-container">
+          <button type="submit">Отправить</button>
+        </div>
+        
+      </form>
+    </div>
+    <div class="application">
+      <div class="application-list">
+        <!-- Блоки заявок будут добавлены с помощью JavaScript -->
+      </div>
+    </div>
+  </section>
+  <!-- Поместите этот скрипт в конец тега body -->
+
+<script>
+  // Функция для добавления новой заявки на страницу
+  function addApplication(name, rating, comment) {
+    // Создание элементов для новой заявки
+    var applicationItem = document.createElement('div');
+    applicationItem.classList.add('application-item');
+
+    var title = document.createElement('h3');
+    title.textContent = 'Заявка';
+    applicationItem.appendChild(title);
+
+    var namePara = document.createElement('p');
+    namePara.innerHTML = '<strong>Имя:</strong> ' + name;
+    applicationItem.appendChild(namePara);
+
+    var ratingPara = document.createElement('p');
+    ratingPara.innerHTML = '<strong>Рейтинг:</strong> ' + rating;
+    applicationItem.appendChild(ratingPara);
+
+    var commentPara = document.createElement('p');
+    commentPara.innerHTML = '<strong>Комментарий:</strong> ' + comment;
+    applicationItem.appendChild(commentPara);
+
+    // Добавление новой заявки к списку заявок
+    var applicationList = document.querySelector('.application-list');
+    applicationList.appendChild(applicationItem);
+  }
+
+  // Примеры заявок
+  addApplication('Игрок 1', 2500, 'Опытный игрок, предпочитаю играть за поддержку.');
+  addApplication('Игрок 2', 2200, 'Ищу тиммейтов для игры на mid позиции.');
+  addApplication('Игрок 3', 1800, 'Новичок, готов учиться и развиваться вместе с командой.');
+</script>
+
+</body>
+</html>
