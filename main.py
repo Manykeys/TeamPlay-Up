@@ -8,7 +8,10 @@ user_id = None
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
-    return render_template('main_page.html', error=False)
+    if is_authorized:
+        return render_template('main_page.html', error=False, is_authorized="true")
+    else:
+        return render_template('main_page.html', error=False, is_authorized="false")
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -73,6 +76,17 @@ def add_application():
             return redirect(url_for('dota2'))
     else:
         return redirect(url_for('login'))
+
+
+@app.route('/chat', methods=['GET', 'POST'])
+def chat():
+    return render_template('chat_base.html')
+
+
+@app.route('/all_chats', methods=['GET', 'POST'])
+def all_chats():
+    return render_template('login.html')
+
 
 
 if __name__ == '__main__':
