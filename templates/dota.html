@@ -24,8 +24,8 @@
     <div class="wrapper">
       <div class="container">
         <div class="slider-track"></div>
-        <input type="range" min="0" max="100" value="30" id="slider-1" oninput="slideOne()">
-        <input type="range" min="0" max="100" value="70" id="slider-2" oninput="slideTwo()">
+        <input type="range" min="0" max="10000" value="2000" id="slider-1" oninput="slideOne()">
+        <input type="range" min="0" max="10000" value="5000" id="slider-2" oninput="slideTwo()">
     </div>
       <div class="values">
           <span id="range1" class="number">
@@ -34,6 +34,9 @@
           <span id="range2" class="number">
               100
           </span>
+      </div>
+      <div class="button-sort">
+        <button type="submit" id="sort">Принять</button>
       </div>
     </div>
     <!--Script-->
@@ -60,7 +63,7 @@
           <label for="comment">Комментарий:</label>
           <input type="text" id="comment" name="comment" required>
           <div class="button-container">
-            <button type="submit">Отправить</button>
+            <button type="submit" id="form">Отправить</button>
           </div>
         </form>
       </div>
@@ -68,7 +71,6 @@
 
     <div class="application-list-container">
       <div class="application-list">
-        <!-- Placeholder для списка заявок -->
         {% for user_nickname, data in dota_applications.items() %}
         <div class="application-item">
           <h3>Заявка</h3>

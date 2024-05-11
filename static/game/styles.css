@@ -78,6 +78,20 @@ header h1 {
   border-radius: 25px;
   background-color: #333;
 }
+.button-sort button {
+  width: 80%;
+  padding: 10px 20px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  color:#148533;
+  background-color: #1D1C1C;
+  font-size: medium;
+  font-weight: bold;
+  position: relative;
+  margin-top: 15%;
+  left: 10%;
+}
 
 .new-application button {
   width: 80%;
@@ -269,4 +283,13 @@ input[type="range"]:active::-webkit-slider-thumb{
   transform: translateY(-50%);
 }
 
+#position {
+  color: white; /* Цвет текста */
+  padding: 5px 10px; /* Отступы внутри элемента */
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 25px;
+  background-color: #333;
+}
 
