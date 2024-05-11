@@ -8,7 +8,7 @@ body {
 }
 
 header {
-  background-color: #333;
+  background-color: #1D1C1C;
   color: #fff;
   padding: 20px;
 }
@@ -44,14 +44,14 @@ header h1 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
-  margin-right: auto; /* Добавлено */
+  margin-right: auto; 
 }
 
 .application-list .application-item {
 
   padding: 10px;
-  background-color: #555; /* добавлен серый цвет фона */
-  border-radius: 10px; /* скругление углов */
+  background-color: #555; 
+  border-radius: 10px; 
 }
 
 .new-application form {
@@ -142,3 +142,131 @@ header h1 {
   right: 0;
   top: 6.5vh;
 }
+
+.ggg{
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+}
+
+.wrapper {
+  display: inline-block; /* Добавлено */
+  vertical-align: top; /* Добавлено */
+  position: relative;
+  width: 25%;
+  padding: 50px 40px 20px 40px;
+  border-radius: 10px;
+}
+
+img[src="static/images/dota2.png"] {
+  vertical-align: middle; /* Добавлено */
+  width: 40%; 
+  position: relative; 
+  left: 25%
+}
+
+.container{
+    position: relative;
+    width: 100%;
+    height: 100px;
+    margin-top: 30px;
+}
+input[type="range"]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    outline: none;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    background-color: transparent;
+    pointer-events: none;
+}
+.slider-track{
+    width: 100%;
+    height: 5px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    border-radius: 5px;
+}
+input[type="range"]::-webkit-slider-runnable-track{
+    -webkit-appearance: none;
+    height: 5px;
+}
+input[type="range"]::-moz-range-track{
+    -moz-appearance: none;
+    height: 5px;
+}
+input[type="range"]::-ms-track{
+    appearance: none;
+    height: 5px;
+}
+input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    height: 1.7em;
+    width: 1.7em;
+    background-color: white;
+    cursor: pointer;
+    margin-top: -9px;
+    pointer-events: auto;
+    border-radius: 50%;
+}
+input[type="range"]::-moz-range-thumb{
+    -webkit-appearance: none;
+    height: 1.7em;
+    width: 1.7em;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: white;
+    pointer-events: auto;
+}
+input[type="range"]::-ms-thumb{
+    appearance: none;
+    height: 1.7em;
+    width: 1.7em;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: white;
+    pointer-events: auto;
+}
+input[type="range"]:active::-webkit-slider-thumb{
+    background-color: #ffffff;
+    border: 3px solid white;
+}
+.values {
+  width: 32%;
+  position: absolute;
+  margin: auto;
+  padding: 5% 17%;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 25px;
+  color: #ffffff;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#range1 {
+  position: absolute;
+  left: 0;
+}
+
+#range2 {
+  position: absolute;
+  right: 0;
+}
+
+
+.number {
+  width: 5%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+

@@ -18,16 +18,28 @@
           <h2 id="nickname" class="nick">Gen@diy</h2>
           <input type="image" class="menu" src="static/images/burger 3.png">
       </div>
-  </div>
-    <div class="sort">
-      <label for="sort">Сортировка по рейтингу:</label>
-      <select id="sort">
-        <option value="asc">По возрастанию</option>
-        <option value="desc">По убыванию</option>
-      </select>
     </div>
-    <img src="static/images/dota2.png" style="width: 40%; margin-left: 50%"> 
-  </header>
+    </header>
+  <div class="ggg">
+    <div class="wrapper">
+      <div class="container">
+        <div class="slider-track"></div>
+        <input type="range" min="0" max="100" value="30" id="slider-1" oninput="slideOne()">
+        <input type="range" min="0" max="100" value="70" id="slider-2" oninput="slideTwo()">
+    </div>
+      <div class="values">
+          <span id="range1" class="number">
+              0
+          </span>
+          <span id="range2" class="number">
+              100
+          </span>
+      </div>
+    </div>
+    <!--Script-->
+    <script src="static/game/slider.js"></script>
+  <img src="static/images/dota2.png"> 
+  </div>
   <section id="applications">
     <div class="new-application-container">
       <div class="new-application">
@@ -46,9 +58,7 @@
       </div>
     </div>
     <div class="application-list-container">
-      <div class="application-list">
-        <!-- Placeholder для списка заявок -->
-      </div>
+      <div class="application-list"></div>
     </div>
   </section>
 
