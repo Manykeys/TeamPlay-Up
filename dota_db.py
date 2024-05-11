@@ -6,6 +6,7 @@ dota_cursor = dota_connect.cursor()
 dota_list = [
     (1, 4000, 'Лирой', 'Ищу друзей', "Carry"),
     (2, 3500, 'Саня', 'Ищу друзей', "Support"),
+    (3, 4500, 'Хуй', 'Ищу друзей', "Mid"),
 ]
 
 dota_pos = ['Carry', 'Mid', "Offlainer", "Semi_sup", "Full_sup"]
@@ -68,6 +69,12 @@ def filter_by_mmr(min_mmr, max_mmr):
         filtered_results = cursor.fetchall()
     return filtered_results
 
+def add_application(user_id, user_MMR, user_nickname, user_comment, user_pos):
+    with sqlite3.connect('dota.db') as connection:
+        cursor = connection.cursor()
+        cursor.execute("INSERT INTO dota (user_id, user_MMR, user_nickname, user_comment, user_pos) VALUES (?, ?, ?, ?, ?);",
+                       (user_id, user_MMR, user_nickname, user_comment, user_pos))
+        connection.commit()
 
 print(get_dictionary_of_quest())
 #view_dota()

@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dota 2</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='game/styles.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='other_shit/fonts_other_shit.css')}}"">
+  <link rel="stylesheet" href="{{ url_for('static', filename='other_shit/fonts_other_shit.css')}}">
 </head>
 <body>
-  
+
   <header>
     <div class="top-chik">
       <div class="on_the_left">
           <img class="logo" src="static/images/Logo.png">
       </div>
-      <div class="on_the_right"> 
+      <div class="on_the_right">
           <h2 id="nickname" class="nick">Gen@diy</h2>
           <input type="image" class="menu" src="static/images/burger 3.png">
       </div>
-  </div>
+    </div>
     <div class="sort">
       <label for="sort">Сортировка по рейтингу:</label>
       <select id="sort">
@@ -26,17 +26,26 @@
         <option value="desc">По убыванию</option>
       </select>
     </div>
-    <img src="static/images/dota2.png" style="width: 40%; margin-left: 50%"> 
+    <img src="static/images/dota2.png" style="width: 40%; margin-left: 50%">
   </header>
+
   <section id="applications">
     <div class="new-application-container">
       <div class="new-application">
-        <form id="newApplicationForm">
+        <form id="newApplicationForm" action="{{ url_for('add_application') }}" method="post">
           <h2>Заполните анкету</h2>
           <label for="name">Имя:</label>
           <input type="text" id="name" name="name" required>
           <label for="rating">Рейтинг:</label>
           <input type="number" id="rating" name="rating" required>
+          <label for="position">Позиция:</label>
+          <select id="position" name="position">
+            <option value="Carry">Carry</option>
+            <option value="Mid">Mid</option>
+            <option value="Offlainer">Offlainer</option>
+            <option value="Semi_sup">Semi Support</option>
+            <option value="Full_sup">Full Support</option>
+          </select>
           <label for="comment">Комментарий:</label>
           <input type="text" id="comment" name="comment" required>
           <div class="button-container">
@@ -45,46 +54,22 @@
         </form>
       </div>
     </div>
+
     <div class="application-list-container">
       <div class="application-list">
         <!-- Placeholder для списка заявок -->
+        {% for user_nickname, data in dota_applications.items() %}
+        <div class="application-item">
+          <h3>Заявка</h3>
+          <p><strong>Имя:</strong> {{ user_nickname }}</p>
+          <p><strong>Рейтинг:</strong> {{ data[1] }}</p>
+          <p><strong>Позиция:</strong> {{ data[3] }}</p>
+          <p><strong>Комментарий:</strong> {{ data[2] }}</p>
+        </div>
+        {% endfor %}
       </div>
     </div>
   </section>
-
-
-<script>
-
-  function addApplication(name, rating, comment) {
-
-    var applicationItem = document.createElement('div');
-    applicationItem.classList.add('application-item');
-
-    var title = document.createElement('h3');
-    title.textContent = 'Заявка';
-    applicationItem.appendChild(title);
-
-    var namePara = document.createElement('p');
-    namePara.innerHTML = '<strong>Имя:</strong> ' + name;
-    applicationItem.appendChild(namePara);
-
-    var ratingPara = document.createElement('p');
-    ratingPara.innerHTML = '<strong>Рейтинг:</strong> ' + rating;
-    applicationItem.appendChild(ratingPara);
-
-    var commentPara = document.createElement('p');
-    commentPara.innerHTML = '<strong>Комментарий:</strong> ' + comment;
-    applicationItem.appendChild(commentPara);
-
-    var applicationList = document.querySelector('.application-list');
-    applicationList.appendChild(applicationItem);
-  }
-
-
-  addApplication('Игрок 1', 2500, 'Опытный игрок, предпочитаю играть за поддержку.');
-  addApplication('Игрок 2', 2200, 'Ищу тиммейтов для игры на mid позиции.');
-  addApplication('Игрок 3', 1800, 'Новичок, готов учиться и развиваться вместе с командой.');
-</script>
 
 </body>
 </html>

@@ -59,4 +59,14 @@ def view_users():
     else:
         print("Таблица пользователей пуста.")
 
+def get_user_id_by_login(login):
+    with sqlite3.connect('users.db') as connection:
+        cursor = connection.cursor()
+        cursor.execute("SELECT user_id FROM users WHERE user_login = ?;", (login,))
+        result = cursor.fetchone()
+        if result:
+            return result[0]
+        else:
+            return None
+
 # view_users()

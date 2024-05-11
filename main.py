@@ -1,8 +1,10 @@
 from flask import Flask, request, render_template, redirect, url_for
 import database
+import dota_db
 
 app = Flask(__name__)
 is_authorized = False
+user_id = None
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
@@ -14,10 +16,11 @@ def login():
         username = request.form['username']
         password = request.form['password']
         users = database.get_dictionary_of_users()
-        print(users)
         if username in users and users[username][0] == password:
             global is_authorized
             is_authorized = True
+            global user_id
+            user_id = database.get_user_id_by_login(username)
             return redirect(url_for('choose'))  # Redirect to the choose page after successful login
         else:
             error_message = 'Incorrect username or password. Please try again.'
@@ -36,6 +39,8 @@ def register():
             return render_template('registration.html', error=True, error_message=error_message)
         else:
             database.add_user(username, password)
+            global user_id
+            user_id = database.get_user_id_by_login(username)
             global is_authorized
             is_authorized = True
             return redirect(url_for('main'))  # Redirect to the main page after successful registration
@@ -51,9 +56,24 @@ def choose():
 @app.route('/dota2', methods=['GET', 'POST'])
 def dota2():
     if is_authorized:
-        return render_template('dota.html')
+        dota_applications = dota_db.get_dictionary_of_quest()
+        return render_template('dota.html', dota_applications=dota_applications)
     else:
-        return redirect(url_for('login'))  # Redirect to the login page if not authorized
+        return redirect(url_for('login'))
+
+@app.route('/add_application', methods=['POST'])
+def add_application():
+    if is_authorized:
+        if request.method == 'POST':
+            user_nickname = request.form['name']
+            user_MMR = int(request.form['rating'])
+            user_comment = request.form['comment']
+            user_pos = request.form['position']
+            dota_db.add_application(user_id, user_MMR, user_nickname, user_comment, user_pos)
+            return redirect(url_for('dota2'))
+    else:
+        return redirect(url_for('login'))
+
 
 if __name__ == '__main__':
     app.run(host="127.0.0.1", port=5000)
