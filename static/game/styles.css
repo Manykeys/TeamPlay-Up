@@ -161,6 +161,7 @@ header h1 {
   display: inline-block;
   vertical-align: top;
   position: relative;
+  width: 100%;
 }
 
 .wrapper {
