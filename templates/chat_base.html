@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='chat/chat_base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='other_shit/fonts_other_shit.css')}}">
+</head>
+<body>
+    <div class="top-chik">
+        <div class="on_the_left">
+            <img class="logo" src="static/images/Logo.png">
+        </div>
+        <div class="on_the_right"> 
+            <h2 id="nickname" class="nick">Gen@diy</h2>
+            <input type="image" class="menu" src="static/images/burger 3.png">
+        </div>
+    </div>
+    <div class="all_shit">
+        <div class="all_chats">
+            <div class="back_to_origins">
+                <a href="{{ url_for('all_chats') }}"> <img class="arrow"  src="static/chat/Arrow.png"> </a>
+                <a href="{{ url_for('all_chats') }}" class="all_ch">Все чаты</a>
+            </div>
+        </div>
+        <div class="solo_chat">
+        </div>
+    </div>
+</body>

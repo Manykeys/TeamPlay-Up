@@ -15,9 +15,33 @@ body{
     color: #FFFFFF;
     font-weight: 900;
     font-size: 1.7vw;
-    margin-top: 1.5vh;
-    margin-right: 4vw;
+    text-align: right;
 }
+
+.nickBurgAuth{
+    width: 30vw;
+    position: relative;
+    float: right;
+    margin-top: 3vh;
+    margin-right: 4vw;
+    height: 5vh;
+}
+
+.menu{
+    width: 2.5vw;
+    height: 3vw;
+    position: absolute;
+    right: 0;
+}
+
+.nick{
+    position: absolute;
+    right: 5vw;
+    font-size: 1.5vw;
+    font-family: 'InterBold';
+    margin-top: 1vh;
+}
+
 h1{
     background-image: linear-gradient(#FFFFFF 20%, #4F4F4F);
     color: transparent;

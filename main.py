@@ -6,7 +6,10 @@ is_authorized = False
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
-    return render_template('main_page.html', error=False)
+    if is_authorized:
+        return render_template('main_page.html', error=False, is_authorized="true")
+    else:
+        return render_template('main_page.html', error=False, is_authorized="false")
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -54,6 +57,17 @@ def dota2():
         return render_template('dota.html')
     else:
         return redirect(url_for('login'))  # Redirect to the login page if not authorized
+
+@app.route('/chat', methods=['GET', 'POST'])
+def chat():
+    return render_template('chat_base.html')
+
+
+@app.route('/all_chats', methods=['GET', 'POST'])
+def all_chats():
+    return render_template('login.html')
+
+
 
 if __name__ == '__main__':
     app.run(host="127.0.0.1", port=5000)
