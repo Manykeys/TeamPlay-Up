@@ -61,7 +61,8 @@ def dota2():
 def add_application():
     if request.method == 'POST':
         user_nickname = request.form['name']
-        user_id = database.get_user_id_by_login(request.form['username'])
+        username = request.cookies["nickname"]
+        user_id = database.get_user_id_by_login(username)
         user_MMR = int(request.form['rating'])
         user_comment = request.form['comment']
         user_pos = request.form['position']

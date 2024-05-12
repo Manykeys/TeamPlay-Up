@@ -53,6 +53,7 @@ body{
     margin-top: 2vh;
     width: 100%;
     height: 80vh;
+    position: relative;
 }
 
 .all_chats{
@@ -64,6 +65,8 @@ body{
 .solo_chat{
     width: 80%;
     height: 100%;
+    position: absolute;
+    margin-top: -1vh;
 }
 
 .back_to_origins{
@@ -90,4 +93,109 @@ body{
 
 a{
     text-decoration: none;
+}
+
+h2{
+    margin: 0 0 0 0;
+}
+
+h1{
+    margin: 0 0 0 0;
+    position: absolute;
+    width: 100%;
+    margin-top: 1vh;
+}
+
+.headChat{
+    color: white;
+    background-color: #343232;
+    text-align: center;
+    font-size: 0.7vw;
+    height: 5vh;
+    font-family: 'InterBold';
+    
+}
+
+.messages{
+    height: 60%;
+    background-color: #1E1E1E;
+    overflow-y:scroll;
+}
+
+.typeMes{
+    height: 8%;
+    width: 100%;
+    background-color: #343232;
+}
+
+.messaga{
+    width: 100%;
+    margin-top: 0.7vh;
+    margin-bottom: 0.8vh;
+    display: block;
+}
+
+.left {
+    position: relative;
+    font-size: 1.2vw;
+    color: white;
+    margin-left: 5vw;
+    word-wrap: break-word;
+    height: auto;
+    max-width: 30%;
+    width: min-content;
+    background-color: #343232;
+    line-height: 3vh;
+    border-radius: 40px;
+}
+
+.right{
+    position: relative;
+    background-color: #096422;
+    font-size: 1.2vw;
+    color: white;
+    margin-left: auto;
+    margin-right: 5vw;
+    word-wrap: break-word;
+    max-width: 30%;
+    width: min-content;
+    height: auto;
+    line-height: 3vh;
+    border-radius: 40px;
+}
+
+p{
+   padding: 1vh 1vw 1vh 1vw;
+   margin: 0 0 0 0;
+}
+.inpet, .sendMe{
+    display: inline-block;
+}
+
+.inpet{
+    background-color: #9C9A9A;
+    width: 70%;
+    height: 60%;
+    margin-left: 10%;
+    border-radius: 20px;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    padding-left: 2vw;
+    color: white;
+    padding-right: 2vw;
+    font-family: 'Inter';
+    font-size: 1.1vw;
+}
+
+.sendMe{
+    width: 2vw;
+    height: 2vw;
+    background-color: #9C9A9A;
+    border-radius: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-top: 1vh;
+    margin-left: 4vw;
+    border: none;
 }
