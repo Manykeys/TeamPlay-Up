@@ -55,7 +55,8 @@ def choose():
 @app.route('/dota2', methods=['GET', 'POST'])
 def dota2():
     dota_applications = dota_db.get_dictionary_of_quest()
-    return render_template('dota.html', dota_applications=dota_applications)
+    print(user_id)
+    return render_template('dota.html', dota_applications=dota_applications, user_id=user_id)
 
 @app.route('/add_application', methods=['POST'])
 def add_application():
