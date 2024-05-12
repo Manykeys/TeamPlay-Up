@@ -8,9 +8,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
-is_authorized = False
-user_id = None
-
 @app.route('/', methods=['GET', 'POST'])
 def main():
     return render_template('main_page.html', error=False)
@@ -22,8 +19,6 @@ def login():
         password = request.form['password']
         users = database.get_dictionary_of_users()
         if username in users and users[username][0] == password:
-            global user_id
-            user_id = database.get_user_id_by_login(username)
             response = redirect('/choose')
             response.set_cookie('nickname', str(username))
             response.set_cookie('is_authorized', "true")
@@ -45,10 +40,6 @@ def register():
             return render_template('registration.html', error=True, error_message=error_message)
         else:
             database.add_user(username, password)
-            global user_id
-            user_id = database.get_user_id_by_login(username)
-            global is_authorized
-            is_authorized = True
             return redirect(url_for('main'))  # Redirect to the main page after successful registration
     return render_template('registration.html', error=False)
 
@@ -58,6 +49,10 @@ def choose():
 
 @app.route('/dota2', methods=['GET', 'POST'])
 def dota2():
+    print(request.cookies["nickname"])
+    username = request.cookies["nickname"]
+    user_id = database.get_user_id_by_login(username)
+    print(request.cookies)
     dota_applications = dota_db.get_dictionary_of_quest()
     print(user_id)
     return render_template('dota.html', dota_applications=dota_applications, user_id=user_id)
@@ -66,6 +61,7 @@ def dota2():
 def add_application():
     if request.method == 'POST':
         user_nickname = request.form['name']
+        user_id = database.get_user_id_by_login(request.form['username'])
         user_MMR = int(request.form['rating'])
         user_comment = request.form['comment']
         user_pos = request.form['position']
