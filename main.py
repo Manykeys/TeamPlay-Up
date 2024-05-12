@@ -21,8 +21,8 @@ def login():
             global user_id
             user_id = database.get_user_id_by_login(username)
             response = redirect('/choose')
-            response.set_cookie('is_authorized', "true")
             response.set_cookie('nickname', str(username))
+            response.set_cookie('is_authorized', "true")
             return response  # Redirect to the choose page after successful login
         else:
             error_message = 'Incorrect username or password. Please try again.'
