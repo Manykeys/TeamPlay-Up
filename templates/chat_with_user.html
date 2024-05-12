@@ -5,7 +5,11 @@
     <title>Chat</title>
 </head>
 <body>
-    <div id="chat"></div>
+    <div id="chat">
+        {% for message in chat_history %}
+        <div>{{ get_username_by_id(message[0]) }}: {{ message[1] }}</div>
+        {% endfor %}
+    </div>
     <input type="text" id="message" autocomplete="off">
     <button onclick="sendMessage()">Send</button>
 
