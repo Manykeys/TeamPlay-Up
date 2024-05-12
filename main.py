@@ -8,10 +8,8 @@ user_id = None
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
-    if is_authorized:
-        return render_template('main_page.html', error=False, is_authorized="true")
-    else:
-        return render_template('main_page.html', error=False, is_authorized="false")
+    return render_template('main_page.html', error=False)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -20,11 +18,12 @@ def login():
         password = request.form['password']
         users = database.get_dictionary_of_users()
         if username in users and users[username][0] == password:
-            global is_authorized
-            is_authorized = True
             global user_id
             user_id = database.get_user_id_by_login(username)
-            return redirect(url_for('choose'))  # Redirect to the choose page after successful login
+            response = redirect('/choose')
+            response.set_cookie('is_authorized', "true")
+            response.set_cookie('nickname', str(username))
+            return response  # Redirect to the choose page after successful login
         else:
             error_message = 'Incorrect username or password. Please try again.'
             return render_template('login.html', error=True, error_message=error_message)
@@ -51,32 +50,22 @@ def register():
 
 @app.route('/choose', methods=['GET', 'POST'])
 def choose():
-    if is_authorized:
-        return render_template('choose_desteny.html')
-    else:
-        return redirect(url_for('login'))  # Redirect to the login page if not authorized
+    return render_template('choose_desteny.html')  # Redirect to the login page if not authorized
 
 @app.route('/dota2', methods=['GET', 'POST'])
 def dota2():
-    if is_authorized:
-        dota_applications = dota_db.get_dictionary_of_quest()
-        return render_template('dota.html', dota_applications=dota_applications, user_id=user_id)
-    else:
-        return redirect(url_for('login'))
+    dota_applications = dota_db.get_dictionary_of_quest()
+    return render_template('dota.html', dota_applications=dota_applications)
 
 @app.route('/add_application', methods=['POST'])
 def add_application():
-    if is_authorized:
-        if request.method == 'POST':
-            user_nickname = request.form['name']
-            user_MMR = int(request.form['rating'])
-            user_comment = request.form['comment']
-            user_pos = request.form['position']
-            print(user_id)
-            dota_db.add_application(user_id, user_MMR, user_nickname, user_comment, user_pos)
-            return redirect(url_for('dota2'))
-    else:
-        return redirect(url_for('login'))
+    if request.method == 'POST':
+        user_nickname = request.form['name']
+        user_MMR = int(request.form['rating'])
+        user_comment = request.form['comment']
+        user_pos = request.form['position']
+        dota_db.add_application(user_id, user_MMR, user_nickname, user_comment, user_pos)
+        return redirect(url_for('dota2'))
 
 
 @app.route('/chat', methods=['GET', 'POST'])

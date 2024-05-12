@@ -1,6 +1,6 @@
 let findTeam = document.getElementById("findTeam");
 
-if (authorized){
+if (document.cookie.includes('is_authorized=true')){
     findTeam.href = "choose";
 
     let link = document.getElementById("to_authorize");
