@@ -12,7 +12,7 @@ socketio = SocketIO(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
-    return render_template('main_page.html', error=False)
+    return render_template('main_page.html', error=False) 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
