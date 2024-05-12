@@ -2,19 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
 </head>
 <body>
-    <h1>Chat with {{ receiver_info.username }}</h1>
+    <div id="chat"></div>
+    <input type="text" id="message" autocomplete="off">
+    <button onclick="sendMessage()">Send</button>
 
-    {% for message in messages %}
-        <p><strong>{{ message.sender }}:</strong> {{ message.content }}</p>
-    {% endfor %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+    <script>
+        var socket = io();
 
-    <form action="{{ url_for('chat_with_user', sender_id=sender_info.id, receiver_id=receiver_info.id) }}" method="post">
-        <input type="text" name="message">
-        <button type="submit">Send</button>
-    </form>
+        socket.on('connect', function() {
+            console.log('Connected');
+        });
+
+        socket.on('message', function(data) {
+            var chat = document.getElementById('chat');
+            var message = document.createElement('div');
+            message.textContent = data;
+            chat.appendChild(message);
+        });
+
+        function sendMessage() {
+            var input = document.getElementById('message');
+            var message = input.value;
+            socket.emit('message', message);
+            input.value = '';
+        }
+    </script>
 </body>
 </html>

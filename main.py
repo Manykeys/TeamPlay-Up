@@ -1,15 +1,18 @@
 from flask import Flask, request, render_template, redirect, url_for
+from flask_socketio import SocketIO, emit
 import database
 import dota_db
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
+
 is_authorized = False
 user_id = None
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
     return render_template('main_page.html', error=False)
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -68,27 +71,24 @@ def add_application():
         dota_db.add_application(user_id, user_MMR, user_nickname, user_comment, user_pos)
         return redirect(url_for('dota2'))
 
-
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
     return render_template('chat_base.html')
-
 
 @app.route('/all_chats', methods=['GET', 'POST'])
 def all_chats():
     return render_template('login.html')
 
-
-from flask import render_template
-
-
 @app.route('/chat/<int:sender_id>/with/<int:receiver_id>', methods=['GET', 'POST'])
-def chat_with_user():
-    if is_authorized:
-        return render_template('chat_with_user.html')
-    else:
-        return redirect(url_for('login'))
+def chat_with_user(sender_id, receiver_id):
+    return render_template('chat_with_user.html', sender_id=sender_id, receiver_id=receiver_id)
+
+
+@socketio.on('message')
+def handle_message(data):
+    print(data, type(data))
+    emit('message', data, broadcast=True)
 
 
 if __name__ == '__main__':
-    app.run(host="127.0.0.1", port=5000)
+    socketio.run(app, host="127.0.0.1", port=5000)
