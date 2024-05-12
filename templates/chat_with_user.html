@@ -12,24 +12,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
     <script>
         var socket = io();
+        var chatId = "{{ chat_id }}";
 
         socket.on('connect', function() {
             console.log('Connected');
+            // Join the room corresponding to the chat
+            socket.emit('join', {chat_id: chatId});
         });
 
         socket.on('message', function(data) {
             var chat = document.getElementById('chat');
             var message = document.createElement('div');
-            message.textContent = data;
+            message.textContent = data.sender_id + ": " + data.message;
             chat.appendChild(message);
         });
 
         function sendMessage() {
             var input = document.getElementById('message');
             var message = input.value;
-            socket.emit('message', message);
+            socket.emit('message', {chat_id: chatId, message: message, sender_id: "{{ sender_id }}"});
             input.value = '';
         }
+
+        socket.on('connect_error', function(err) {
+            console.log('Connection error:', err);
+        });
+
+        socket.on('disconnect', function() {
+            console.log('Disconnected');
+        });
     </script>
 </body>
 </html>

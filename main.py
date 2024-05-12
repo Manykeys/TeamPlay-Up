@@ -81,13 +81,16 @@ def all_chats():
 
 @app.route('/chat/<int:sender_id>/with/<int:receiver_id>', methods=['GET', 'POST'])
 def chat_with_user(sender_id, receiver_id):
-    return render_template('chat_with_user.html', sender_id=sender_id, receiver_id=receiver_id)
+    chat_id = f"{min(sender_id, receiver_id)}_{max(sender_id, receiver_id)}"
+    return render_template('chat_with_user.html', chat_id=chat_id, sender_id=sender_id, receiver_id=receiver_id)
 
 
 @socketio.on('message')
 def handle_message(data):
-    print(data, type(data))
+    print(data)
+    chat_id = data['chat_id']
     emit('message', data, broadcast=True)
+
 
 
 if __name__ == '__main__':
