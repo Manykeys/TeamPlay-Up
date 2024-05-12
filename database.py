@@ -69,4 +69,14 @@ def get_user_id_by_login(login):
         else:
             return None
 
+
+def get_user_login_by_id(user_id):
+    with sqlite3.connect('users.db') as connection:
+        cursor = connection.cursor()
+        cursor.execute("SELECT user_login FROM users WHERE user_id = ?;", (user_id,))
+        result = cursor.fetchone()
+        if result:
+            return result[0]
+        else:
+            return None
 # view_users()

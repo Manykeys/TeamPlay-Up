@@ -60,7 +60,7 @@ def choose():
 def dota2():
     if is_authorized:
         dota_applications = dota_db.get_dictionary_of_quest()
-        return render_template('dota.html', dota_applications=dota_applications)
+        return render_template('dota.html', dota_applications=dota_applications, user_id=user_id)
     else:
         return redirect(url_for('login'))
 
@@ -72,6 +72,7 @@ def add_application():
             user_MMR = int(request.form['rating'])
             user_comment = request.form['comment']
             user_pos = request.form['position']
+            print(user_id)
             dota_db.add_application(user_id, user_MMR, user_nickname, user_comment, user_pos)
             return redirect(url_for('dota2'))
     else:
@@ -87,6 +88,16 @@ def chat():
 def all_chats():
     return render_template('login.html')
 
+
+from flask import render_template
+
+
+@app.route('/chat/<int:sender_id>/with/<int:receiver_id>', methods=['GET', 'POST'])
+def chat_with_user():
+    if is_authorized:
+        return render_template('chat_with_user.html')
+    else:
+        return redirect(url_for('login'))
 
 
 if __name__ == '__main__':

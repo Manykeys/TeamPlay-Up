@@ -81,7 +81,7 @@
           <p><strong>Позиция:</strong> {{ data[3] }}</p>
           <p><strong>Комментарий:</strong> {{ data[2] }}</p>
           <div class="button-accept">
-            <button type="submit" id="message">Написать</button>
+              <a href="{{ url_for('chat_with_user', sender_id=user_id, receiver_id=data[0]) }}">Написать</a>
           </div>
         </div>
         {% endfor %}
