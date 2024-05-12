@@ -22,25 +22,27 @@
     </header>
   <div class="ggg">
     <div class="wrapper">
+      <label for="name"><b>MMR (Очки рейтинга):</b></label>
       <div class="container">
         <div class="slider-track"></div>
         <input type="range" min="0" max="10000" value="2000" id="slider-1" oninput="slideOne()">
         <input type="range" min="0" max="10000" value="5000" id="slider-2" oninput="slideTwo()">
-    </div>
+      </div>
       <div class="values">
           <span id="range1" class="number">
               0
           </span>
           <span id="range2" class="number">
-              100
+              10000
           </span>
       </div>
       <div class="button-sort">
-        <button type="submit" id="sort">Принять</button>
+        <button type="submit" id="sort">Применить</button>
       </div>
     </div>
     <!--Script-->
     <script src="static/game/slider.js"></script>
+    <script src="static/game/sort.js"></script>
   <img src="static/images/dota2.png"> 
   </div>
   <section id="applications">
@@ -78,6 +80,9 @@
           <p><strong>Рейтинг:</strong> {{ data[1] }}</p>
           <p><strong>Позиция:</strong> {{ data[3] }}</p>
           <p><strong>Комментарий:</strong> {{ data[2] }}</p>
+          <div class="button-accept">
+            <button type="submit" id="message">Написать</button>
+          </div>
         </div>
         {% endfor %}
       </div>

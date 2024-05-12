@@ -93,6 +93,19 @@ header h1 {
   left: 10%;
 }
 
+.button-accept button {
+  width: 10%;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  color:#148533;
+  background-color: #555;
+  font-size: medium;
+  font-weight: bold;
+  position: relative;
+  left: 70%;
+}
+
 .new-application button {
   width: 80%;
   padding: 10px 20px;
@@ -184,7 +197,6 @@ img[src="static/images/dota2.png"] {
     position: relative;
     width: 100%;
     height: 100px;
-    margin-top: 30px;
 }
 input[type="range"]{
     -webkit-appearance: none;
