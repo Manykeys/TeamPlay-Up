@@ -90,6 +90,9 @@ def chat_with_user(sender_id, receiver_id):
 def handle_message(data):
     print(data)
     chat_id = data['chat_id']
+    sender_id = data['sender_id']
+    sender_username = database.get_user_login_by_id(sender_id)
+    data['sender_username'] = sender_username
     emit('message', data, room=chat_id)
 
 @socketio.on('join')
@@ -104,4 +107,4 @@ def on_leave(data):
     
 
 if __name__ == '__main__':
-    socketio.run(app, host="127.0.0.1", port=5000)
+    socketio.run(app, host="127.0.0.1", port=5000, allow_unsafe_werkzeug=True)

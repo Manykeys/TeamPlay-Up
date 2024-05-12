@@ -23,7 +23,7 @@
         socket.on('message', function(data) {
             var chat = document.getElementById('chat');
             var message = document.createElement('div');
-            message.textContent = data.sender_id + ": " + data.message;
+            message.textContent = data.sender_username + ": " + data.message;
             chat.appendChild(message);
         });
 
