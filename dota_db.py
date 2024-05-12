@@ -23,7 +23,7 @@ def dota_db(data_of_dota):
     dota_cursor.executemany("INSERT INTO dota VALUES(?,?,?,?,?);", dota_list)
     dota_connect.commit()
 
-#dota_db(dota_list)
+dota_db(dota_list)
 
 def view_dota():
     dota_cursor.execute("SELECT * FROM dota")
