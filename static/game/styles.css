@@ -178,8 +178,8 @@ header h1 {
 }
 
 .wrapper {
-  display: inline-block; /* Добавлено */
-  vertical-align: top; /* Добавлено */
+  display: inline-block; 
+  vertical-align: top; 
   position: relative;
   width: 25%;
   padding: 50px 40px 20px 40px;
@@ -187,7 +187,7 @@ header h1 {
 }
 
 img[src="static/images/dota2.png"] {
-  vertical-align: middle; /* Добавлено */
+  vertical-align: middle; 
   width: 40%; 
   position: relative; 
   left: 25%
@@ -297,8 +297,8 @@ input[type="range"]:active::-webkit-slider-thumb{
 }
 
 #position {
-  color: white; /* Цвет текста */
-  padding: 5px 10px; /* Отступы внутри элемента */
+  color: white;
+  padding: 5px 10px;
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
