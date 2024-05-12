@@ -1,15 +1,19 @@
 from flask import Flask, request, render_template, redirect, url_for
+from flask_socketio import join_room, leave_room
+from flask_socketio import SocketIO, emit
 import database
 import dota_db
-
+import message_db
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
+
 is_authorized = False
 user_id = None
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
     return render_template('main_page.html', error=False)
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -55,7 +59,8 @@ def choose():
 @app.route('/dota2', methods=['GET', 'POST'])
 def dota2():
     dota_applications = dota_db.get_dictionary_of_quest()
-    return render_template('dota.html', dota_applications=dota_applications)
+    print(user_id)
+    return render_template('dota.html', dota_applications=dota_applications, user_id=user_id)
 
 @app.route('/add_application', methods=['POST'])
 def add_application():
@@ -67,17 +72,45 @@ def add_application():
         dota_db.add_application(user_id, user_MMR, user_nickname, user_comment, user_pos)
         return redirect(url_for('dota2'))
 
-
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
     return render_template('chat_base.html')
-
 
 @app.route('/all_chats', methods=['GET', 'POST'])
 def all_chats():
     return render_template('login.html')
 
+@app.route('/chat/<int:sender_id>/with/<int:receiver_id>', methods=['GET', 'POST'])
+def chat_with_user(sender_id, receiver_id):
+    chat_id = f"{min(sender_id, receiver_id)}_{max(sender_id, receiver_id)}"
+    chat_history = message_db.get_chat_history(chat_id)
+    return render_template('chat_with_user.html', chat_id=chat_id, sender_id=sender_id, receiver_id=receiver_id, chat_history=chat_history, get_username_by_id=database.get_user_login_by_id)
+
+
+
+
+
+@socketio.on('message')
+def handle_message(data):
+    print(data)
+    chat_id = data['chat_id']
+    sender_id = data['sender_id']
+    message = data['message']
+    message_db.add_message(chat_id, sender_id, message)
+    sender_username = database.get_user_login_by_id(sender_id)
+    data['sender_username'] = sender_username
+    emit('message', data, room=chat_id)
+
+@socketio.on('join')
+def on_join(data):
+    chat_id = data['chat_id']
+    join_room(chat_id)
+
+@socketio.on('leave')
+def on_leave(data):
+    chat_id = data['chat_id']
+    leave_room(chat_id)
 
 
 if __name__ == '__main__':
-    app.run(host="127.0.0.1", port=5000)
+    socketio.run(app, host="127.0.0.1", port=5000, allow_unsafe_werkzeug=True)
