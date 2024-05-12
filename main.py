@@ -4,6 +4,8 @@ from flask_socketio import SocketIO, emit
 import database
 import dota_db
 import message_db
+
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
@@ -55,6 +57,7 @@ def dota2():
     print(request.cookies)
     dota_applications = dota_db.get_dictionary_of_quest()
     print(user_id)
+    print(dota_applications)
     return render_template('dota.html', dota_applications=dota_applications, user_id=user_id)
 
 @app.route('/add_application', methods=['POST'])
@@ -107,6 +110,21 @@ def on_join(data):
 def on_leave(data):
     chat_id = data['chat_id']
     leave_room(chat_id)
+
+
+@app.route('/user_chats')
+def user_chats():
+    if 'nickname' not in request.cookies:
+        return redirect(url_for('login'))
+    username = request.cookies['nickname']
+    user_id = database.get_user_id_by_login(username)
+    user_chats = message_db.get_chat_partner_by_id(user_id)  # Получаем список чатов пользователя
+    chat_links = []
+    for partner_id in user_chats:
+        chat_link = url_for('chat_with_user', sender_id=user_id, receiver_id=partner_id)
+        partner_username = database.get_user_login_by_id(partner_id)  # Получаем имя пользователя-партнера
+        chat_links.append((chat_link, partner_username))  # Добавляем пару (ссылка, имя пользователя) в список
+    return render_template('user_chats.html', chat_links=chat_links)
 
 
 if __name__ == '__main__':
