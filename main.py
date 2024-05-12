@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, redirect, url_for
+from flask_socketio import join_room, leave_room
 from flask_socketio import SocketIO, emit
 import database
 import dota_db
@@ -89,9 +90,18 @@ def chat_with_user(sender_id, receiver_id):
 def handle_message(data):
     print(data)
     chat_id = data['chat_id']
-    emit('message', data, broadcast=True)
+    emit('message', data, room=chat_id)
 
+@socketio.on('join')
+def on_join(data):
+    chat_id = data['chat_id']
+    join_room(chat_id)
 
+@socketio.on('leave')
+def on_leave(data):
+    chat_id = data['chat_id']
+    leave_room(chat_id)
+    
 
 if __name__ == '__main__':
     socketio.run(app, host="127.0.0.1", port=5000)
