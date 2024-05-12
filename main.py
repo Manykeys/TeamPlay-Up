@@ -8,9 +8,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
-is_authorized = False
-user_id = None
-
 @app.route('/', methods=['GET', 'POST'])
 def main():
     return render_template('main_page.html', error=False)
@@ -52,6 +49,10 @@ def choose():
 
 @app.route('/dota2', methods=['GET', 'POST'])
 def dota2():
+    print(request.cookies["nickname"])
+    username = request.cookies["nickname"]
+    user_id = database.get_user_id_by_login(username)
+    print(request.cookies)
     dota_applications = dota_db.get_dictionary_of_quest()
     print(user_id)
     return render_template('dota.html', dota_applications=dota_applications, user_id=user_id)
@@ -86,6 +87,7 @@ def handle_message(data):
     print(data)
     chat_id = data['chat_id']
     sender_id = data['sender_id']
+    print(sender_id)
     sender_username = database.get_user_login_by_id(sender_id)
     data['sender_username'] = sender_username
     emit('message', data, room=chat_id)
