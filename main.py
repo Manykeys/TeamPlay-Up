@@ -4,6 +4,8 @@ from flask_socketio import SocketIO, emit
 import database
 import dota_db
 import message_db
+
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
@@ -55,13 +57,17 @@ def dota2():
     print(request.cookies)
     dota_applications = dota_db.get_dictionary_of_quest()
     print(user_id)
+    print(dota_applications)
     return render_template('dota.html', dota_applications=dota_applications, user_id=user_id)
 
 @app.route('/add_application', methods=['POST'])
 def add_application():
     if request.method == 'POST':
         user_nickname = request.form['name']
-        user_id = database.get_user_id_by_login(request.form['username'])
+        username = request.cookies["nickname"]
+        user_id = database.get_user_id_by_login(username)
+    
+        print(user_id)
         user_MMR = int(request.form['rating'])
         user_comment = request.form['comment']
         user_pos = request.form['position']
