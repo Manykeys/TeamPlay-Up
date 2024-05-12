@@ -3,7 +3,7 @@ from flask_socketio import join_room, leave_room
 from flask_socketio import SocketIO, emit
 import database
 import dota_db
-
+import message_db
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
@@ -79,7 +79,11 @@ def all_chats():
 @app.route('/chat/<int:sender_id>/with/<int:receiver_id>', methods=['GET', 'POST'])
 def chat_with_user(sender_id, receiver_id):
     chat_id = f"{min(sender_id, receiver_id)}_{max(sender_id, receiver_id)}"
-    return render_template('chat_with_user.html', chat_id=chat_id, sender_id=sender_id, receiver_id=receiver_id)
+    chat_history = message_db.get_chat_history(chat_id)
+    return render_template('chat_with_user.html', chat_id=chat_id, sender_id=sender_id, receiver_id=receiver_id, chat_history=chat_history, get_username_by_id=database.get_user_login_by_id)
+
+
+
 
 
 @socketio.on('message')
@@ -87,7 +91,8 @@ def handle_message(data):
     print(data)
     chat_id = data['chat_id']
     sender_id = data['sender_id']
-    print(sender_id)
+    message = data['message']
+    message_db.add_message(chat_id, sender_id, message)
     sender_username = database.get_user_login_by_id(sender_id)
     data['sender_username'] = sender_username
     emit('message', data, room=chat_id)
