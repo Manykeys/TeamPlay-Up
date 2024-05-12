@@ -108,5 +108,20 @@ def on_leave(data):
     leave_room(chat_id)
 
 
+@app.route('/user_chats')
+def user_chats():
+    if 'nickname' not in request.cookies:
+        return redirect(url_for('login'))
+    username = request.cookies['nickname']
+    user_id = database.get_user_id_by_login(username)
+    user_chats = message_db.get_chat_partner_by_id(user_id)  # Получаем список чатов пользователя
+    chat_links = []
+    for partner_id in user_chats:
+        chat_link = url_for('chat_with_user', sender_id=user_id, receiver_id=partner_id)
+        partner_username = database.get_user_login_by_id(partner_id)  # Получаем имя пользователя-партнера
+        chat_links.append((chat_link, partner_username))  # Добавляем пару (ссылка, имя пользователя) в список
+    return render_template('user_chats.html', chat_links=chat_links)
+
+
 if __name__ == '__main__':
     socketio.run(app, host="127.0.0.1", port=5000, allow_unsafe_werkzeug=True)

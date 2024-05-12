@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Chats</title>
+</head>
+<body>
+    <h1>Your Chats</h1>
+    <ul>
+        {% for chat_link, username in chat_links %}
+            <li><a href="{{ chat_link }}">Chat with {{ username }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
