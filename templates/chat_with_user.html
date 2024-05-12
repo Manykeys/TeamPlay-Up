@@ -23,7 +23,7 @@
         <div class="all_chats">
             <div class="back_to_origins">
                 <a href="{{ url_for('all_chats') }}"> <img class="arrow"  src="{{ url_for('static', filename='chat/arrow.png')}}"> </a>
-                <a href="{{ url_for('all_chats') }}" class="all_ch">Все чаты</a>
+                <a href="{{ url_for('user_chats') }}" class="all_ch">Все чаты</a>
             </div>
         </div>
         <div class="solo_chat">
@@ -80,10 +80,12 @@
                 function sendMessage() {
                     var input = document.getElementById('message');
                     var message = input.value;
-                    socket.emit('message', {chat_id: chatId, message: message, sender_id: "{{ sender_id }}"});
-                    input.value = '';
+                    if (message !== '' && message.replace(/\s/g, '').length > 0) {
+                        var chatId = "{{ chat_id }}";
+                        socket.emit('message', {chat_id: chatId, message: message, sender_id: "{{ sender_id }}"});
+                        input.value = '';
+                    }
                 }
-        
                 socket.on('connect_error', function(err) {
                     console.log('Connection error:', err);
                 });
