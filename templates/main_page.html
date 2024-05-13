@@ -3,11 +3,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='main_page/main_page.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='other_shit/fonts_other_shit.css')}}">
     <script src="static/main_page/nick.js" defer></script>
+    <script src="static/cookie.js"></script>
 </head>
 <body>
     <img class="logo" src="static/images/Logo.png">
     <div class="nickBurgAuth" id="nickBurgAuth">
         <a class="aurthor" href="{{ url_for('login') }}" id="to_authorize">Авторизироваться</a>
+    </div>
+    <div class="menuWindow" id="men">
+        <a class="team" href="{{ url_for('choose') }}">Собрать команду</a>
+        <a class="change">Редактировать профиль</a>
+        <a class="chats" href="{{ url_for('user_chats') }}">Все чаты</a>
+        <a class="exit" id="exit">Выйти</a>
     </div>
     <h1>TEAM PLAY UP</h1>
     <h2 class="gatherTeam">Собери свою команду</h2>

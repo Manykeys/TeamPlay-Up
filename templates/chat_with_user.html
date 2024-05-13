@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='other_shit/fonts_other_shit.css')}}">
     <script src="{{ url_for('static', filename='choose2.js')}}"></script>
     <script src="{{ url_for('static', filename='nickname.js')}}" defer></script>
+    <script src="{{ url_for('static', filename='menu.js')}}" defer></script>
+    <script src="{{ url_for('static', filename='cookie.js')}}" defer></script>
 </head>
 <body>
     <div class="top-chik">
@@ -17,7 +19,13 @@
         </div>
         <div class="on_the_right">
             <h2 id="nickname" class="nick"></h2>
-            <input type="image" class="menu" src="{{ url_for('static', filename='images/burger 3.png')}}">
+            <input type="image" class="menu" id="burger" src="{{ url_for('static', filename='images/burger 3.png')}}">
+        </div>
+        <div class="menuWindow" id="men">
+            <a class="team" href="{{ url_for('choose') }}">Собрать команду</a>
+            <a class="change">Редактировать профиль</a>
+            <a class="chats" href="{{ url_for('user_chats') }}">Все чаты</a>
+            <a class="exit" id="exit">Выйти</a>
         </div>
     </div>
     <div class="all_shit">

@@ -1,5 +1,13 @@
+let flag = true;
+
 document.addEventListener("DOMContentLoaded", () => {
     let findTeam = document.getElementById("findTeam");
+
+    let exit = document.getElementById("exit");
+    exit.onclick = () => {
+        clearAllCookies();
+        location.reload();
+    }
 
     if (document.cookie.includes('is_authorized=true')){
         findTeam.href = "choose";
@@ -18,6 +26,18 @@ document.addEventListener("DOMContentLoaded", () => {
         burger.type = "image";
         burger.className = "menu";
         burger.src = "static/images/burger 3.png";
+        burger.onclick = () => {
+            let men = document.getElementById("men");
+            if (flag){
+                men.style.transform = "translateY(180%)";
+                flag = false;
+            }
+            else{
+                men.style.transform = "translateY(0)";
+                flag = true;
+            }
+            
+        }
         nickBurg.append(burger);
     }
     else

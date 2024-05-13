@@ -144,3 +144,35 @@ p{
     height: 20vh;
     margin-bottom: 10vh;
 }
+
+.menuWindow{
+    width: 15vw;
+    height: 17vh;
+    background-color: #3C3C3C;
+    color: white;
+    text-decoration: none;
+    border-radius: 15px;
+    position: absolute;
+    right: 4vw;
+    top: -20vh;
+    transition: 1s;
+}
+
+.team, .chats, .exit, .change{
+    text-decoration: none;
+    color: white;
+    width: max-content;
+    height: max-content;
+    font-family: 'Monsterat';
+    margin-left: 1vw;
+    margin-top: 1vh;
+    font-size: 1vw;
+}
+
+.exit:hover, .change:hover {
+    cursor: pointer;
+}
+
+.exit{
+    color:#148533;
+}
