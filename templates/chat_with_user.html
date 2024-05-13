@@ -33,18 +33,20 @@
             <div class="messages">
                 <div id="chat">
                 {% for message in chat_history %}
-                    {% if message[0] == sender_id %}
-                        <div class="messaga">
-                            <div class="left">
-                                <p>{{ message[1] }} </p>
+                    {% if message[1]|length > 0%}
+                        {% if message[0] == sender_id %}
+                            <div class="messaga">
+                                <div class="left">
+                                    <p>{{ message[1] }} </p>
+                                </div>
                             </div>
-                        </div>
-                    {% else %}
-                        <div class="messaga">
-                            <div class="right">
-                                <p>{{ message[1] }}</p>
+                        {% else %}
+                            <div class="messaga">
+                                <div class="right">
+                                    <p>{{ message[1] }}</p>
+                                </div>
                             </div>
-                        </div>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
                 </div>
