@@ -45,14 +45,14 @@
                     {% if message[1]|length > 0%}
                         {% if message[0] == sender_id %}
                             <div class="messaga">
-                                <div class="left">
+                                <div class="right">
                                     <p>{{ message[1] }} </p>
                                 </div>
                             </div>
                         {% else %}
                             <div class="messaga">
-                                <div class="right">
-                                    <p>{{ message[1] }}</p>
+                                <div class="left">
+                                    <p>{{ message[1] }} </p>
                                 </div>
                             </div>
                         {% endif %}
@@ -79,12 +79,22 @@
                     var chat = document.getElementById('chat');
                     var message = document.createElement('div');
                     message.className = "messaga";
-                    let rightSide = document.createElement('div');
-                    rightSide.className = "right";
-                    let me = document.createElement('p');
-                    me.innerHTML = data.message;
-                    rightSide.appendChild(me);
-                    message.appendChild(rightSide);
+
+                    var messageDiv = document.createElement('div');
+                    messageDiv.className = "message-content";
+
+                    if (data.sender_id == "{{ sender_id }}") {
+                        messageDiv.classList.add("right");
+                    } else {
+                        messageDiv.classList.add("left");
+                    }
+
+                    var messageText = document.createElement('p');
+                    messageText.innerHTML = data.message;
+
+                    messageDiv.appendChild(messageText);
+
+                    message.appendChild(messageDiv);
                     chat.appendChild(message);
                 });
         

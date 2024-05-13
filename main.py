@@ -51,14 +51,27 @@ def choose():
 
 @app.route('/dota2', methods=['GET', 'POST'])
 def dota2():
+    print(database.get_dictionary_of_users())
     print(request.cookies["nickname"])
     username = request.cookies["nickname"]
     user_id = database.get_user_id_by_login(username)
     print(request.cookies)
     dota_applications = dota_db.get_dictionary_of_quest()
     print(user_id)
-    print(dota_applications)
-    return render_template('dota.html', dota_applications=dota_applications, user_id=user_id)
+    print(dota_applications.values())
+    if any(user_id == application[0] for application in dota_applications.values()):
+        default_application = {}
+        kkk = 0
+        for key in dota_applications:
+            if user_id == dota_applications[key][0]:
+                default_application = dota_applications[key]
+                kkk = key
+                break
+        print(default_application)
+        return render_template('dota2_alt.html', user_id=user_id, default_application=default_application, dota_applications=dota_applications, username=kkk)
+    else:
+        return render_template('dota.html', dota_applications=dota_applications, user_id=user_id)
+
 
 @app.route('/add_application', methods=['POST'])
 def add_application():
@@ -71,6 +84,12 @@ def add_application():
         user_pos = request.form['position']
         dota_db.add_application(user_id, user_MMR, user_nickname, user_comment, user_pos)
         return redirect(url_for('dota2'))
+    
+@app.route('/delete_application', methods=['POST'])
+def delete_application():
+    user_id = request.form['user_id']
+    dota_db.delete_application(user_id)
+    return redirect(url_for('dota2'))
 
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():

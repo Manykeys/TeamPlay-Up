@@ -6,7 +6,7 @@ dota_cursor = dota_connect.cursor()
 dota_list = [
     (1, 4000, 'Лирой', 'Ищу друзей', "Carry"),
     (2, 3500, 'Саня', 'Ищу друзей', "Support"),
-    (3, 4500, 'Хуй', 'Ищу друзей', "Mid"),
+    (3, 4500, 'Иван', 'Ищу друзей', "Mid"),
 ]
 
 dota_pos = ['Carry', 'Mid', "Offlainer", "Semi_sup", "Full_sup"]
@@ -23,7 +23,7 @@ def dota_db(data_of_dota):
     dota_cursor.executemany("INSERT INTO dota VALUES(?,?,?,?,?);", dota_list)
     dota_connect.commit()
 
-dota_db(dota_list)
+#dota_db(dota_list)
 
 def view_dota():
     dota_cursor.execute("SELECT * FROM dota")
@@ -74,6 +74,12 @@ def add_application(user_id, user_MMR, user_nickname, user_comment, user_pos):
         cursor = connection.cursor()
         cursor.execute("INSERT INTO dota (user_id, user_MMR, user_nickname, user_comment, user_pos) VALUES (?, ?, ?, ?, ?);",
                        (user_id, user_MMR, user_nickname, user_comment, user_pos))
+        connection.commit()
+
+def delete_application(user_id):
+    with sqlite3.connect('dota.db') as connection:
+        cursor = connection.cursor()
+        cursor.execute("DELETE FROM dota WHERE user_id = ?;", (user_id,))
         connection.commit()
 
 print(get_dictionary_of_quest())
