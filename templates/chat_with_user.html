@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='chat/chat_base.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='other_shit/fonts_other_shit.css')}}">
     <script src="{{ url_for('static', filename='choose2.js')}}"></script>
+    <script src="{{ url_for('static', filename='nickname.js')}}" defer></script>
 </head>
 <body>
     <div class="top-chik">
@@ -15,14 +16,14 @@
             </a>
         </div>
         <div class="on_the_right">
-            <h2 id="nickname" class="nick">Gen@diy</h2>
+            <h2 id="nickname" class="nick"></h2>
             <input type="image" class="menu" src="{{ url_for('static', filename='images/burger 3.png')}}">
         </div>
     </div>
     <div class="all_shit">
         <div class="all_chats">
             <div class="back_to_origins">
-                <a href="{{ url_for('all_chats') }}"> <img class="arrow"  src="{{ url_for('static', filename='chat/arrow.png')}}"> </a>
+                <a href="{{ url_for('user_chats') }}"> <img class="arrow"  src="{{ url_for('static', filename='chat/arrow.png')}}"> </a>
                 <a href="{{ url_for('user_chats') }}" class="all_ch">Все чаты</a>
             </div>
         </div>
