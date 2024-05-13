@@ -4,8 +4,9 @@ db1_connect = sqlite3.connect('users.db')
 db1_cursor = db1_connect.cursor()
 
 users_list = [
-    (1, 'Firchalka', 'Nikta2004'),
-    (2, 'Sanya', 'Artem13Chlen'),
+    (1, 'Firchalka', '123'),
+    (2, 'Sanya', '123'),
+    (3, 'GGGG', '123')
 ]
 
 
@@ -46,7 +47,7 @@ def get_dictionary_of_users():
 
 
 #
-# users_db(users_list)
+#users_db(users_list)
 
 def view_users():
     db1_cursor.execute("SELECT * FROM users")

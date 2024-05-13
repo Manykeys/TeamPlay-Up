@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dota 2</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='game/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='other_shit/fonts_other_shit.css')}}">
+  <script src="static/choose2.js"></script>
+  <script src="static/nickname.js" defer></script>
+</head>
+<body>
+
+  <header>
+    <div class="top-chik">
+      <div class="on_the_left">
+        <a href="{{ url_for('main') }}">
+          <img class="logo" src="static/images/Logo.png">
+        </a>
+      </div>
+      <div class="on_the_right">
+          <h2 id="nickname" class="nick"></h2>
+          <input type="image" class="menu" src="static/images/burger 3.png">
+      </div>
+    </div>
+    </header>
+  <div class="ggg">
+    <div class="wrapper">
+      <label for="name"><b>MMR (Очки рейтинга):</b></label>
+      <div class="container">
+        <div class="slider-track"></div>
+        <input type="range" min="0" max="10000" value="2000" id="slider-1" oninput="slideOne()">
+        <input type="range" min="0" max="10000" value="5000" id="slider-2" oninput="slideTwo()">
+      </div>
+      <div class="values">
+          <span id="range1" class="number">
+              0
+          </span>
+          <span id="range2" class="number">
+              10000
+          </span>
+      </div>
+      <div class="button-sort">
+        <button type="submit" id="sort">Применить</button>
+      </div>
+    </div>
+    <!--Script-->
+    <script src="static/game/slider.js"></script>
+    <script src="static/game/sort.js"></script>
+  <img src="static/images/dota2.png"> 
+  </div>
+  <section id="applications">
+    <div class="new-application-container">
+      <div class="new-application">
+        <form id="newApplicationForm" action="{{ url_for('delete_application') }}" method="post">
+        <h2>Заявка</h2>
+        <p><strong>Имя:</strong> {{ username }}</p>
+        <p><strong>Рейтинг:</strong> {{ default_application[1] }}</p>
+        <p><strong>Позиция:</strong> {{ default_application[3] }}</p>
+        <p><strong>Комментарий:</strong> {{ default_application[2] }}</p>
+          <input type="hidden" name="user_id" value="{{ user_id }}">
+          <div class="button-container">
+            <button type="submit">Удалить заявку</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="application-list-container">
+      <div class="application-list">
+        {% for user_nickname, data in dota_applications.items() %}
+        <div class="application-item">
+          <h3>Заявка</h3>
+          <p><strong>Имя:</strong> {{ user_nickname }}</p>
+          <p><strong>Рейтинг:</strong> {{ data[1] }}</p>
+          <p><strong>Позиция:</strong> {{ data[3] }}</p>
+          <p><strong>Комментарий:</strong> {{ data[2] }}</p>
+          <form action="{{ url_for('chat_with_user', sender_id=user_id, receiver_id=data[0]) }}" method="post">
+            <div class="button-accept">
+                <button>Написать</button>
+            </div>
+          </form>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
