@@ -105,8 +105,27 @@ def chat_with_user(sender_id, receiver_id):
     chat_history = message_db.get_chat_history(chat_id)
     return render_template('chat_with_user.html', chat_id=chat_id, sender_id=sender_id, receiver_id=receiver_id, chat_history=chat_history, get_username_by_id=database.get_user_login_by_id)
 
+@app.route('/user_chats')
+def user_chats():
+    if 'nickname' not in request.cookies:
+        return redirect(url_for('login'))
+    username = request.cookies['nickname']
+    user_id = database.get_user_id_by_login(username)
+    user_chats = message_db.get_chat_partner_by_id(user_id)  # Получаем список чатов пользователя
+    piska = message_db.get_chat_partner_by_id1(user_id)
 
+    chat_links = []
+    user_chats = [x[0].split('_') for x in piska]
+    user_chats = [qqq[0] if str(user_id) != qqq[0] else qqq[1] for qqq in user_chats]
+    messages = [x[1] for x in piska]
+    messages.reverse()
 
+    for partner_id in user_chats:
+        chat_link = url_for('chat_with_user', sender_id=user_id, receiver_id=partner_id)
+        partner_username = database.get_user_login_by_id(partner_id)
+        chat_links.append((chat_link, partner_username, messages[-1]))
+        messages.pop()
+    return render_template('user_chats.html', chat_links=chat_links)
 
 
 @socketio.on('message')
@@ -129,21 +148,6 @@ def on_join(data):
 def on_leave(data):
     chat_id = data['chat_id']
     leave_room(chat_id)
-
-
-@app.route('/user_chats')
-def user_chats():
-    if 'nickname' not in request.cookies:
-        return redirect(url_for('login'))
-    username = request.cookies['nickname']
-    user_id = database.get_user_id_by_login(username)
-    user_chats = message_db.get_chat_partner_by_id(user_id)  # Получаем список чатов пользователя
-    chat_links = []
-    for partner_id in user_chats:
-        chat_link = url_for('chat_with_user', sender_id=user_id, receiver_id=partner_id)
-        partner_username = database.get_user_login_by_id(partner_id)  # Получаем имя пользователя-партнера
-        chat_links.append((chat_link, partner_username))  # Добавляем пару (ссылка, имя пользователя) в список
-    return render_template('user_chats.html', chat_links=chat_links)
 
 
 if __name__ == '__main__':

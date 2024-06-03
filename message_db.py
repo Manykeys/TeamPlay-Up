@@ -21,6 +21,7 @@ def add_message(chat_id, sender_id, message):
     c.execute("INSERT INTO messages (chat_id, sender_id, message) VALUES (?, ?, ?)", (chat_id, sender_id, message))
     conn.commit()
     conn.close()
+
 def get_chat_history(chat_id):
     conn = sqlite3.connect('your_database.db')
     c = conn.cursor()
@@ -43,3 +44,11 @@ def get_chat_partner_by_id(id):
         if str(id) in item[1]:
             partners.add(item[1].split("_")[1] if item[1].split("_")[0] == str(id) else item[1].split("_")[0])
     return list(partners)
+
+def get_chat_partner_by_id1(id):
+    conn = sqlite3.connect('your_database.db')
+    c = conn.cursor()
+    c.execute(f"SELECT chat_id, message, MAX(timestamp) as ts FROM messages GROUP BY chat_id")
+    table_contents = c.fetchall()
+    conn.close()
+    return list(table_contents)
