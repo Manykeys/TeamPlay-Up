@@ -159,12 +159,12 @@ def user_chats():
     username = request.cookies['nickname']
     user_id = database.get_user_id_by_login(username)
     user_chats = message_db.get_chat_partner_by_id(user_id)  # Получаем список чатов пользователя
-    piska = message_db.get_chat_partner_by_id1(user_id)
+    data = message_db.get_chat_partner_by_id1(user_id)
 
     chat_links = []
-    user_chats = [x[0].split('_') for x in piska]
+    user_chats = [x[0].split('_') for x in data]
     user_chats = [qqq[0] if str(user_id) != qqq[0] else qqq[1] for qqq in user_chats]
-    messages = [x[1] for x in piska]
+    messages = [x[1] for x in data]
     messages.reverse()
 
     for partner_id in user_chats:
@@ -186,12 +186,12 @@ def handle_message(data):
     data['sender_username'] = sender_username
     emit('message', data, room=chat_id)
 
-@socketio.on('join')
+@socketio.on('connect')
 def on_join(data):
     chat_id = data['chat_id']
     join_room(chat_id)
 
-@socketio.on('leave')
+@socketio.on('disconnect')
 def on_leave(data):
     chat_id = data['chat_id']
     leave_room(chat_id)
