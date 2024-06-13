@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dota 2</title>
+  <title>WOT</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='game/styles.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='other_shit/fonts_other_shit.css')}}">
   <script src="static/choose2.js"></script>
@@ -55,20 +55,29 @@
     <!--Script-->
     <script src="static/game/slider.js"></script>
     <script src="static/game/sort.js"></script>
-  <img class='image' src="static/images/dota2.png"> 
+  <img class='image' src="static/images/wot.png"> 
   </div>
   <section id="applications">
     <div class="new-application-container">
       <div class="new-application">
-        <form id="newApplicationForm" action="{{ url_for('delete_application') }}" method="post">
-        <h2>Заявка</h2>
-        <p><strong>Имя:</strong> {{ username }}</p>
-        <p><strong>Рейтинг:</strong> {{ default_application[1] }}</p>
-        <p><strong>Позиция:</strong> {{ default_application[3] }}</p>
-        <p><strong>Комментарий:</strong> {{ default_application[2] }}</p>
-          <input type="hidden" name="user_id" value="{{ user_id }}">
+        <form id="newApplicationForm" action="{{ url_for('add_application') }}" method="post">
+          <h2>Заполните анкету</h2>
+          <label for="name">Имя:</label>
+          <input type="text" id="name" name="name" required>
+          <label for="rating">Рейтинг:</label>
+          <input type="number" id="rating" name="rating" required>
+          <label for="position">Позиция:</label>
+          <select id="position" name="position">
+            <option value="Carry">Carry</option>
+            <option value="Mid">Mid</option>
+            <option value="Offlainer">Offlainer</option>
+            <option value="Semi_sup">Semi Support</option>
+            <option value="Full_sup">Full Support</option>
+          </select>
+          <label for="comment">Комментарий:</label>
+          <input type="text" id="comment" name="comment" required>
           <div class="button-container">
-            <button type="submit">Удалить заявку</button>
+            <button type="submit" id="form">Отправить</button>
           </div>
         </form>
       </div>
@@ -76,7 +85,7 @@
 
     <div class="application-list-container">
       <div class="application-list">
-        {% for user_nickname, data in dota_applications.items() %}
+        {% for user_nickname, data in applications.items() %}
         <div class="application-item">
           <h3>Заявка</h3>
           <p><strong>Имя:</strong> {{ user_nickname }}</p>

@@ -72,6 +72,53 @@ def dota2():
     else:
         return render_template('dota.html', dota_applications=dota_applications, user_id=user_id)
 
+@app.route('/wot', methods=['GET'])
+def wot():
+        print(database.get_dictionary_of_users())
+        print(request.cookies["nickname"])
+        username = request.cookies["nickname"]
+        user_id = database.get_user_id_by_login(username)
+        print(request.cookies)
+        dota_applications = dota_db.get_dictionary_of_quest()
+        print(user_id)
+        print(dota_applications.values())
+        return render_template('wot.html', applications=dota_applications, user_id=user_id)
+
+@app.route('/pubg', methods=['GET'])
+def pubg():
+    username = request.cookies["nickname"]
+    user_id = database.get_user_id_by_login(username)
+    return render_template('pubg.html', applications={}, user_id=user_id)
+
+@app.route('/cs2', methods=['GET'])
+def cs2():
+    username = request.cookies["nickname"]
+    user_id = database.get_user_id_by_login(username)
+    return render_template('cs2.html', applications={}, user_id=user_id)
+
+@app.route('/apex', methods=['GET'])
+def apex():
+    username = request.cookies["nickname"]
+    user_id = database.get_user_id_by_login(username)
+    return render_template('apex.html', applications={}, user_id=user_id)
+
+@app.route('/heartstone', methods=['GET'])
+def heartstone():
+    username = request.cookies["nickname"]
+    user_id = database.get_user_id_by_login(username)
+    return render_template('heartstone.html', applications={}, user_id=user_id)
+
+@app.route('/valorant', methods=['GET'])
+def valorant():
+    username = request.cookies["nickname"]
+    user_id = database.get_user_id_by_login(username)
+    return render_template('valorant.html', applications={}, user_id=user_id)
+
+@app.route('/overwatch', methods=['GET'])
+def overwatch():
+    username = request.cookies["nickname"]
+    user_id = database.get_user_id_by_login(username)
+    return render_template('overwatch.html', applications={}, user_id=user_id)
 
 @app.route('/add_application', methods=['POST'])
 def add_application():

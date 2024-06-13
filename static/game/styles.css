@@ -186,7 +186,7 @@ header h1 {
   border-radius: 10px;
 }
 
-img[src="static/images/dota2.png"] {
+.image {
   vertical-align: middle; 
   width: 40%; 
   position: relative; 
